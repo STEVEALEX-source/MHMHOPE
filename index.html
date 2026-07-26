@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f3efe9" />
+  <meta name="description" content="A quiet space for hard days. Gentle reminders, breathing exercises, and supportive messages for mental wellness." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Proof of Better Days</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <style>
+    :root {
+      /* Colors */
+      --bg: #f3efe9;
+      --text: #1f1f1f;
+      --muted: #6f6a64;
+      --accent: #2f4f3f;
+      --accent-soft: #eef4ef;
+      --border: #e2d8cb;
+      --white: #ffffff;
+      
+      /* Shadows */
+      --shadow: 0 14px 38px rgba(31, 31, 31, 0.08);
+      --shadow-strong: 0 22px 55px rgba(31, 31, 31, 0.12);
+      --shadow-hover: 0 6px 16px rgba(47, 79, 63, 0.08);
+      
+      /* Spacing */
+      --space-xs: 8px;
+      --space-sm: 12px;
+      --space-md: 18px;
+      --space-lg: 24px;
+      --space-xl: 34px;
+      
+      /* Border radius */
+      --radius-sm: 18px;
+      --radius-md: 20px;
+      --radius-full: 999px;
+      
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-base: 0.9s ease;
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at top left, rgba(47, 79, 63, 0.08), transparent 24%),
+        linear-gradient(135deg, #f7f2eb 0%, var(--bg) 100%);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: auto auto -120px -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(47, 79, 63, 0.11), transparent 70%);
+      pointer-events: none;
+      filter: blur(12px);
+      z-index: -1;
+    }
+
+    .crisis-bar {
+      max-width: 760px;
+      margin: var(--space-lg) auto 0;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.86);
+      text-align: center;
+      color: #5f463d;
+      font-size: 0.92rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .crisis-bar a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity var(--transition-fast);
+    }
+
+    .crisis-bar a:hover,
+    .crisis-bar a:focus {
+      opacity: 0.8;
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 72px;
+    }
+
+    .hero {
+      background: linear-gradient(145deg, #ffffff, #f3ece3);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-strong);
+      transform: perspective(1000px) rotateX(1deg) rotateY(-1deg);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2rem, 3.6vw, 2.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      max-width: 700px;
+    }
+
+    .lead {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: var(--space-lg);
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 11px 16px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(145deg, var(--accent-soft), #e6ede8);
+      color: var(--accent);
+      box-shadow: 0 8px 18px rgba(47, 79, 63, 0.08);
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn:hover,
+    .btn:focus {
+      background: #e7efe8;
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: var(--shadow-hover);
+      outline: none;
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.99);
+    }
+
+    .mood-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: 16px;
+    }
+
+    .mood-btn {
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--muted);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .mood-btn:hover,
+    .mood-btn:focus {
+      background: var(--accent-soft);
+      outline: none;
+    }
+
+    .mood-btn.active {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: var(--space-lg);
+    }
+
+    .card {
+      background: linear-gradient(145deg, #fcfbf8, #f1ebdf);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+      cursor: default;
+      box-shadow: 0 10px 24px rgba(31, 31, 31, 0.04);
+    }
+
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 14px 28px rgba(31, 31, 31, 0.08);
+      border-color: #d5cdbf;
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .interactive-panel {
+      margin-top: var(--space-md);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #ffffff, #f5eee5);
+      text-align: center;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: var(--shadow);
+    }
+
+    .interactive-panel:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(31, 31, 31, 0.06);
+    }
+
+    .panel-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: var(--space-sm);
+    }
+
+    .tag-row {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 5px 9px;
+      border-radius: var(--radius-full);
+      background: #f6efe8;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .mini-btn {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--white);
+      color: var(--accent);
+      transition: all var(--transition-fast);
+    }
+
+    .mini-btn:hover,
+    .mini-btn:focus {
+      background: var(--accent-soft);
+      outline: none;
+    }
+
+    .breathing-card {
+      margin-top: var(--space-md);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #fbf8f2, #efe5d9);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .orb {
+      width: 92px;
+      height: 92px;
+      margin: 14px auto 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff, var(--accent));
+      box-shadow: inset 0 8px 20px rgba(255,255,255,0.45), 0 12px 24px rgba(47, 79, 63, 0.18);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .orb.in { transform: scale(1.16); }
+    .orb.hold { transform: scale(1.06); }
+    .orb.out { transform: scale(0.82); }
+
+    #quote-display {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    #quote-display.fade {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    footer {
+      margin-top: var(--space-lg);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 760px) {
+      .notes-grid { grid-template-columns: 1fr; }
+      .hero { padding: var(--space-lg); }
+    }
+
+    @media (max-width: 560px) {
+      .container { padding: var(--space-lg) 14px 56px; }
+      .crisis-bar { border-radius: 16px; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="crisis-bar" role="alert" aria-live="polite">
+    In crisis or need someone right now? Call or text <a href="tel:988" aria-label="Call or text 988">988</a> (US/CA), <a href="tel:111" aria-label="Call or text 111">111</a> (UK), or <a href="tel:14416" aria-label="Call or text 14416">14416</a> / <a href="tel:18008914416" aria-label="Call or text 1800-891-4416">1800-891-4416</a> (India Tele-MANAS).
+  </div>
+
+  <div class="container">
+    <section class="hero" aria-label="Main greeting and daily affirmations">
+      <div class="eyebrow" aria-hidden="true">A quiet space for hard days</div>
+      <h1>Bad days are heavy, but they are not the whole story.</h1>
+      <p class="lead">When everything feels too loud, a few gentle truths can be enough to hold onto for one more moment.</p>
+
+      <div class="hero-actions">
+        <button class="btn" id="reminder-btn" type="button" aria-label="Show a gentle reminder for current mood">Show a gentle reminder</button>
+        <button class="btn" id="reset-btn" type="button" aria-label="Reset reminders to the first one">Start again</button>
+      </div>
+
+      <div class="notes-grid" role="list">
+        <article class="card" role="listitem">
+          <h2>You do not have to solve everything tonight.</h2>
+          <p>Tonight only asks for the next small step: water, food, rest, a pause.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <h2>Your mind is not a reliable narrator.</h2>
+          <p>When pain is loud, it makes everything feel permanent. Feelings move.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <h2>Small good things are still waiting.</h2>
+          <p>A song, a warm drink, a quiet room, a kind voice. Ordinary beauty still matters.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <h2>You have already survived what felt impossible.</h2>
+          <p>Every hard season you have made it through is proof of your strength.</p>
+        </article>
+      </div>
+
+      <fieldset class="mood-row" id="mood-selector" aria-label="Choose your current mood to personalize reminders">
+        <legend style="display: none;">Select your mood</legend>
+        <button class="mood-btn active" data-mood="grounded" type="button" aria-pressed="true">Grounded</button>
+        <button class="mood-btn" data-mood="calm" type="button" aria-pressed="false">Calm</button>
+        <button class="mood-btn" data-mood="hopeful" type="button" aria-pressed="false">Hopeful</button>
+      </fieldset>
+    </section>
+
+    <section class="interactive-panel" aria-label="Daily reminder">
+      <p id="quote-display" role="complementary" aria-label="Inspirational reminder"></p>
+      <p style="color: var(--muted); font-size: 0.92rem; margin-top: 6px;">A small reminder for the moment you are in.</p>
+      <div class="tag-row">
+        <span class="tag" id="quote-tag" aria-label="Mood category">Calm</span>
+      </div>
+      <div class="panel-actions">
+        <button class="mini-btn" id="copy-btn" type="button" aria-label="Copy reminder to clipboard">Copy quote</button>
+      </div>
+    </section>
+
+    <section class="breathing-card" aria-label="Guided breathing exercise">
+      <h2 style="font-size: 1rem; margin-bottom: 6px;">A tiny breathing rhythm</h2>
+      <p style="color: var(--muted); font-size: 0.92rem; margin-bottom: 10px;">Let this slow the pace for a moment.</p>
+      <div class="orb" id="breath-orb" aria-hidden="true" role="img"></div>
+      <p id="breath-label" style="font-weight: 600; color: var(--accent);" aria-live="polite" aria-atomic="true">Breathe in</p>
+      <div class="panel-actions">
+        <button class="btn" id="breathe-toggle" type="button" aria-label="Start or pause breathing exercise">Start</button>
+        <button class="btn" id="breathe-reset" type="button" aria-label="Reset breathing exercise">Reset</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built with care for anyone who needs a little softness today.</p>
+    </footer>
+  </div>
+
+  <script>
+    const reminders = [
+      { text: '“Rest if you must, but do not quit.”', mood: 'Calm' },
+      { text: '“You are allowed to take this one hour at a time.”', mood: 'Calm' },
+      { text: '“Be gentle with yourself. You are doing your best with what you have right now.”', mood: 'Calm' },
+      { text: '“The sun will rise again, even if tonight feels endless.”', mood: 'Hopeful' },
+      { text: '“You do not need to earn the right to breathe.”', mood: 'Calm' },
+      { text: '“Even a small light can make the dark feel less permanent.”', mood: 'Hopeful' },
+      { text: '“This moment is not the whole of your life.”', mood: 'Hopeful' },
+      { text: '“Peace can begin with one quiet breath.”', mood: 'Calm' },
+      { text: '“Tomorrow is allowed to be gentler than today.”', mood: 'Hopeful' },
+      { text: '“You are still becoming, even on the hardest days.”', mood: 'Hopeful' }
+    ];
+
+    const moods = {
+      grounded: { accent: '#2f4f3f', accentSoft: '#eef4ef' },
+      calm: { accent: '#5b6b7c', accentSoft: '#f1f4f7' },
+      hopeful: { accent: '#8a5a3b', accentSoft: '#f9f1e8' }
+    };
+
+    // Configuration constants
+    const CONFIG = {
+      BREATHING_CYCLE_MS: 3400,
+      FADE_TRANSITION_MS: 140,
+      COPY_FEEDBACK_MS: 1200,
+      STORAGE_KEY: 'softspace-mood',
+      DEFAULT_MOOD: 'grounded'
+    };
+
+    // Breathing phases
+    const BREATHING_PHASES = [
+      { label: 'Breathe in', className: 'in' },
+      { label: 'Hold', className: 'hold' },
+      { label: 'Breathe out', className: 'out' }
+    ];
+
+    // State management
+    const state = {
+      reminderIndex: 0,
+      isBreathingActive: false,
+      breathStep: 0,
+      breathingTimer: null
+    };
+
+    // DOM elements
+    const elements = {
+      quoteDisplay: document.getElementById('quote-display'),
+      quoteTag: document.getElementById('quote-tag'),
+      breathOrb: document.getElementById('breath-orb'),
+      breathLabel: document.getElementById('breath-label'),
+      moodButtons: document.querySelectorAll('.mood-btn'),
+      reminderBtn: document.getElementById('reminder-btn'),
+      resetBtn: document.getElementById('reset-btn'),
+      copyBtn: document.getElementById('copy-btn'),
+      breatheToggleBtn: document.getElementById('breathe-toggle'),
+      breatheResetBtn: document.getElementById('breathe-reset')
+    };
+
+    /**
+     * Display a reminder with fade transition
+     * @param {number} idx - Index of reminder to display
+     */
+    function displayReminder(idx) {
+      elements.quoteDisplay.classList.add('fade');
+      setTimeout(() => {
+        elements.quoteDisplay.textContent = reminders[idx].text;
+        elements.quoteTag.textContent = reminders[idx].mood;
+        elements.quoteDisplay.classList.remove('fade');
+      }, CONFIG.FADE_TRANSITION_MS);
+    }
+
+    /**
+     * Show the next reminder
+     */
+    function nextReminder() {
+      state.reminderIndex = (state.reminderIndex + 1) % reminders.length;
+      displayReminder(state.reminderIndex);
+    }
+
+    /**
+     * Reset to the first reminder
+     */
+    function resetReminder() {
+      state.reminderIndex = 0;
+      displayReminder(state.reminderIndex);
+    }
+
+    /**
+     * Apply mood theme and save preference
+     * @param {string} name - Mood name
+     */
+    function applyMood(name) {
+      if (!moods[name]) {
+        console.warn(`Unknown mood: ${name}`);
+        return;
+      }
+
+      const mood = moods[name];
+      document.documentElement.style.setProperty('--accent', mood.accent);
+      document.documentElement.style.setProperty('--accent-soft', mood.accentSoft);
+      
+      elements.moodButtons.forEach((button) => {
+        const isActive = button.dataset.mood === name;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      
+      try {
+        localStorage.setItem(CONFIG.STORAGE_KEY, name);
+      } catch (err) {
+        console.warn('Could not save mood to localStorage:', err);
+      }
+    }
+
+    /**
+     * Copy current quote to clipboard
+     */
+    async function copyQuote() {
+      const text = elements.quoteDisplay.textContent;
+      if (!text.trim()) {
+        return;
+      }
+
+      const originalText = elements.copyBtn.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        elements.copyBtn.textContent = 'Copied!';
+        setTimeout(() => {
+          elements.copyBtn.textContent = originalText;
+        }, CONFIG.COPY_FEEDBACK_MS);
+      } catch (err) {
+        console.error('Failed to copy quote:', err);
+        elements.copyBtn.textContent = 'Copy failed';
+        setTimeout(() => {
+          elements.copyBtn.textContent = originalText;
+        }, CONFIG.COPY_FEEDBACK_MS);
+      }
+    }
+
+    /**
+     * Update breathing animation phase
+     */
+    function updateBreathingPhase() {
+      const phase = BREATHING_PHASES[state.breathStep % BREATHING_PHASES.length];
+      elements.breathLabel.textContent = phase.label;
+      elements.breathOrb.className = `orb ${phase.className}`;
+      state.breathStep += 1;
+    }
+
+    /**
+     * Start breathing exercise
+     */
+    function startBreathing() {
+      if (state.isBreathingActive) return;
+      
+      state.isBreathingActive = true;
+      elements.breatheToggleBtn.textContent = 'Pause';
+      elements.breatheToggleBtn.setAttribute('aria-label', 'Pause breathing exercise');
+      updateBreathingPhase();
+      state.breathingTimer = setInterval(updateBreathingPhase, CONFIG.BREATHING_CYCLE_MS);
+    }
+
+    /**
+     * Stop breathing exercise
+     */
+    function stopBreathing() {
+      state.isBreathingActive = false;
+      clearInterval(state.breathingTimer);
+      state.breathingTimer = null;
+      elements.breatheToggleBtn.textContent = 'Start';
+      elements.breatheToggleBtn.setAttribute('aria-label', 'Start breathing exercise');
+    }
+
+    /**
+     * Reset breathing exercise
+     */
+    function resetBreathing() {
+      stopBreathing();
+      state.breathStep = 0;
+      elements.breathOrb.className = 'orb';
+      elements.breathLabel.textContent = 'Breathe in';
+    }
+
+    /**
+     * Initialize event listeners
+     */
+    function initEventListeners() {
+      if (elements.reminderBtn) {
+        elements.reminderBtn.addEventListener('click', nextReminder);
+      }
+      if (elements.resetBtn) {
+        elements.resetBtn.addEventListener('click', resetReminder);
+      }
+      if (elements.copyBtn) {
+        elements.copyBtn.addEventListener('click', copyQuote);
+      }
+      if (elements.breatheToggleBtn) {
+        elements.breatheToggleBtn.addEventListener('click', () => {
+          state.isBreathingActive ? stopBreathing() : startBreathing();
+        });
+      }
+      if (elements.breatheResetBtn) {
+        elements.breatheResetBtn.addEventListener('click', resetBreathing);
+      }
+
+      elements.moodButtons.forEach((button) => {
+        button.addEventListener('click', () => applyMood(button.dataset.mood));
+      });
+    }
+
+    /**
+     * Initialize the application
+     */
+    function init() {
+      displayReminder(0);
+
+      const savedMood = (() => {
+        try {
+          return localStorage.getItem(CONFIG.STORAGE_KEY) || CONFIG.DEFAULT_MOOD;
+        } catch {
+          return CONFIG.DEFAULT_MOOD;
+        }
+      })();
+
+      applyMood(savedMood);
+      initEventListeners();
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+</body>
+</html>
