@@ -18,4 +18,4 @@ Plaintext
 ├── index.html        # Main landing page & immediate help info
 ├── resources.html    # Articles and coping guides
 ├── css/              # Stylesheets
-└── js/               # Light interactivity (if applicable)
+
