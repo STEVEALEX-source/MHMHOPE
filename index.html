@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proof of Better Days</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="#home">home</a>
+  <a href="#mood">mood</a>
+  <a href="#reminders">reminders</a>
+  <a href="#quote">quote</a>
+  <a href="#breathe">breathe</a>
+  <a href="#checkin">check-in</a>
+  <a href="#help">help</a>
+  <a href="#about">about</a>
+</nav>
+
+<section id="home">
+  <div class="inner">
+    <p class="kicker">for the hard days</p>
+    <h1>Bad days are heavy, but they are not the whole story.</h1>
+    <p class="lead">When everything feels too loud, a few quiet things to hold onto. Take what helps. Leave the rest.</p>
+    <div class="row">
+      <button class="primary" type="button" id="go-reminders">see reminders</button>
+      <button type="button" id="go-breathe">just breathe</button>
+    </div>
+  </div>
+</section>
+
+<section id="crisis">
+  <div class="inner">
+    Need someone right now?
+    Call or text <a href="tel:988">988</a> (US/CA),
+    <a href="tel:111">111</a> (UK),
+    <a href="tel:14416">14416</a> / <a href="tel:18008914416">1800-891-4416</a> (India Tele-MANAS).
+  </div>
+</section>
+
+<section id="mood">
+  <div class="inner">
+    <p class="kicker">right now</p>
+    <h2>How are you showing up today?</h2>
+    <p class="lead">Doesn't have to be exact. Pick whatever's closest.</p>
+    <div class="moods">
+      <button class="mood on" type="button" data-m="grounded" onclick="pickMood('grounded')">grounded</button>
+      <button class="mood" type="button" data-m="calm" onclick="pickMood('calm')">calm</button>
+      <button class="mood" type="button" data-m="hopeful" onclick="pickMood('hopeful')">hopeful</button>
+      <button class="mood" type="button" data-m="tired" onclick="pickMood('tired')">tired</button>
+      <button class="mood" type="button" data-m="heavy" onclick="pickMood('heavy')">heavy</button>
+    </div>
+    <div class="mood-quote" id="mood-quote">tap a mood</div>
+  </div>
+</section>
+
+<section id="reminders">
+  <div class="inner">
+    <p class="kicker">things worth hearing</p>
+    <h2>A few reminders</h2>
+    <p class="lead">None of these fix everything. They're just true.</p>
+    <div class="note"><span class="num">01</span><div><h3>You do not have to solve everything tonight.</h3><p>Tonight only asks for the next small step — water, food, rest, a pause.</p></div></div>
+    <div class="note"><span class="num">02</span><div><h3>Your mind is not a reliable narrator.</h3><p>When pain is loud it makes everything feel permanent. Feelings move.</p></div></div>
+    <div class="note"><span class="num">03</span><div><h3>Small good things are still waiting.</h3><p>A song, a warm drink, a quiet room. Ordinary stuff still counts.</p></div></div>
+    <div class="note"><span class="num">04</span><div><h3>You have already survived what felt impossible.</h3><p>Every hard season you got through is still yours.</p></div></div>
+    <div class="note"><span class="num">05</span><div><h3>Rest is not failure.</h3><p>Stopping for a bit does not erase the work you've done.</p></div></div>
+    <div class="note"><span class="num">06</span><div><h3>You don't owe a performance of being okay.</h3><p>It's fine if today is quiet and unfinished.</p></div></div>
+  </div>
+</section>
+
+<section id="quote">
+  <div class="inner">
+    <p class="kicker">one line</p>
+    <h2>A line for this moment</h2>
+    <p class="lead">Click through if you want another.</p>
+    <p id="quote-text"></p>
+    <div id="tag">calm</div>
+    <div class="row">
+      <button type="button" id="next-btn">another</button>
+      <button type="button" id="copy-btn">copy</button>
+    </div>
+  </div>
+</section>
+
+<section id="breathe">
+  <div class="inner">
+    <p class="kicker">slow down</p>
+    <h2>Breathe for a second</h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto">No pressure. Follow the circle if it helps.</p>
+    <div class="orb" id="orb"></div>
+    <p id="breath-txt">breathe in</p>
+    <div class="row">
+      <button class="primary" type="button" id="breathe-btn">start</button>
+      <button type="button" id="breathe-reset">reset</button>
+    </div>
+  </div>
+</section>
+
+<section id="checkin">
+  <div class="inner">
+    <p class="kicker">tiny things</p>
+    <h2>A small check-in</h2>
+    <p class="lead">Not a to-do list. Tick whatever you've managed — even one is enough.</p>
+    <ul class="checkin" id="checkin-list">
+      <li><input type="checkbox" id="c1"><label for="c1">drank some water</label></li>
+      <li><input type="checkbox" id="c2"><label for="c2">ate something</label></li>
+      <li><input type="checkbox" id="c3"><label for="c3">stepped away from the screen for a bit</label></li>
+      <li><input type="checkbox" id="c4"><label for="c4">messaged someone, or thought about it</label></li>
+      <li><input type="checkbox" id="c5"><label for="c5">let yourself rest without explaining it</label></li>
+      <li><input type="checkbox" id="c6"><label for="c6">went outside, or opened a window</label></li>
+    </ul>
+  </div>
+</section>
+
+<section id="help">
+  <div class="inner">
+    <p class="kicker">if it gets worse</p>
+    <h2>Help lines</h2>
+    <p class="lead">These exist for a reason. Using them is allowed.</p>
+    <div class="res"><a href="tel:988">988 — US &amp; Canada</a><p>Suicide &amp; Crisis Lifeline. Call or text, 24/7.</p></div>
+    <div class="res"><a href="tel:111">111 — UK</a><p>NHS urgent mental health support.</p></div>
+    <div class="res"><a href="tel:14416">14416 / 1800-891-4416 — India</a><p>Tele-MANAS. Free, 24/7, multiple languages.</p></div>
+    <div class="res"><a href="https://www.iasp.info/suicidalthoughts/" target="_blank" rel="noopener">IASP — find a local helpline</a><p>Resources by country.</p></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="inner">
+    <p class="kicker">why this exists</p>
+    <h2>About</h2>
+    <p>This is a small page for hard days. No accounts, no tracking, no advice that pretends to fix your life in five steps.</p>
+    <p>Just reminders, a breathing thing, and numbers you can call if you need a real person.</p>
+    <p>If you're here, I hope something on this page makes the next hour a little lighter.</p>
+  </div>
+</section>
+
+<footer>made for anyone who needed a softer page today</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
